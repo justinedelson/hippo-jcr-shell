@@ -109,9 +109,9 @@ public class NodeTree implements Command {
                 buf.append("|--");
             }
             buf.append(JcrWrapper.fullName(node));
-            if (JcrWrapper.isVirtual(node)) {
-                buf.append("*");
-            }
+            //if (JcrWrapper.isVirtual(node)) {
+            //    buf.append("*");
+            //}
             buf.append(" {").append(node.getPrimaryNodeType().getName()).append("}");
             System.out.println(buf.toString());
 

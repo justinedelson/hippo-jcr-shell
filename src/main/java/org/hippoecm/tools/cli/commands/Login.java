@@ -41,7 +41,7 @@ public class Login implements Command {
      * {@inheritDoc}
      */
     public final String usage() {
-        return "login";
+        return "login [workspace]";
     }
 
     /**
@@ -55,6 +55,10 @@ public class Login implements Command {
      * {@inheritDoc}
      */
     public final boolean execute(final String[] args) {
-        return JcrWrapper.login();
+        String workspaceName = null;
+        if (args.length == 2) {
+            workspaceName = args[1];
+        }
+        return JcrWrapper.login(workspaceName);
     }
 }

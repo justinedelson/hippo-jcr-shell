@@ -76,7 +76,7 @@ public class NodeList implements Command {
             }
             path.append(args[i]);
         }
-        
+
         NodeIterator iter = JcrWrapper.getNodes(path.toString());
         if (iter == null) {
             System.out.println("Path not found: " + path);
@@ -87,11 +87,11 @@ public class NodeList implements Command {
             System.out.printf("%-40s%s\n", "--------------------", "--------------------");
             while (iter.hasNext()) {
                 Node n = iter.nextNode();
-                if (JcrWrapper.isVirtual(n)) {
-                    System.out.printf("%-40s%s\n", JcrWrapper.fullName(n) + "*", n.getPrimaryNodeType().getName());
-                } else {
+                //if (JcrWrapper.isVirtual(n)) {
+                //    System.out.printf("%-40s%s\n", JcrWrapper.fullName(n) + "*", n.getPrimaryNodeType().getName());
+                //} else {
                     System.out.printf("%-40s%s\n", JcrWrapper.fullName(n), n.getPrimaryNodeType().getName());
-                }
+                //}
             }
             System.out.printf("%-40s%s\n", "--------------------", "--------------------");
             System.out.printf("Total: %s\n", iter.getSize());

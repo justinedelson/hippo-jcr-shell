@@ -96,7 +96,7 @@ public final class JcrWrapper {
 
     private static Terminal term;
 
-    private static boolean isHippoRepository = true;
+    private static String workspace;
 
     private JcrWrapper() {
         super();
@@ -119,14 +119,6 @@ public final class JcrWrapper {
             // ignore
             // term.setCommandLinePrompt("jcr (error) :>");
         }
-    }
-
-    public static void setHippoRepository(final boolean isHippo) {
-        isHippoRepository = isHippo;
-    }
-
-    public static boolean isHippoRepository() {
-        return isHippoRepository;
     }
 
     private static void setCurrentNode(final Node node) {
@@ -231,7 +223,7 @@ public final class JcrWrapper {
         try {
             System.out.println();
             Repository repository = JcrUtils.getRepository(getServer());
-            session = repository.login(new SimpleCredentials(getUsername(), getPassword()));
+            session = repository.login(new SimpleCredentials(getUsername(), getPassword()), workspace);
             setConnected(true);
             setCurrentNode(session.getRootNode());
             System.out.println("done.");
@@ -268,7 +260,8 @@ public final class JcrWrapper {
         }
     }
 
-    public static boolean login() {
+    public static boolean login(String workspaceName) {
+        workspace = workspaceName;
         return connect();
     }
 
